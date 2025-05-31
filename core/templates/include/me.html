@@ -1,0 +1,18 @@
+ 
+ <div class="sidebar-wrap">
+                    <div class="sidebar-box p-4 about text-center ftco-animate">
+                        <h2 class="heading mb-4">About Me</h2>
+                        <img src="{{request.user.image.url}}" class="img-fluid" alt="Colorlib Template">
+                        <div class="text pt-4">
+                            <p>Hi! My name is <strong>{{request.user.first_name}} {{request.user.last_name}}</strong>, {{request.user.bio}}</p>
+                        </div>
+                    </div>
+                    <div class="sidebar-box p-4 ftco-animate">
+                        <form action="{% url 'core:stories'%}" class="search-form">
+                            <div class="form-group">
+                                <span class="icon icon-search"></span>
+                                <input name="Search" class="form-control" placeholder="Search">
+                            </div>
+                        </form>
+                    </div>
+                </div>
