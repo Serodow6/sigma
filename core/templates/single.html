@@ -19,7 +19,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 order-lg-last ftco-animate">
-                <h2 class="mb-3">{{data.description}}</p>
+                <h2 class="mb-3">{{data.description}}</h2>
                 
                 <p>{{data.text}}</p>
                
@@ -37,7 +37,7 @@
 
                 <div class="about-author d-flex p-4 bg-light">
                     <div class="bio mr-5">
-                        <img src="{{data.user.image.url}}" alt="Image placeholder" class="img-fluid mb-4">
+                        <img style="width: 100px;" src="{{data.user.image.url}}" alt="Image placeholder" class="img-fluid mb-4">
                     </div>
                     <div class="desc">
                         <h3>{{data.user.first_name}} {{data.user.last_name}}</h3>
@@ -46,124 +46,32 @@
                 </div>
 
 
-                <div class="pt-5 mt-5">
-                    <h3 class="mb-5">6 Comments</h3>
+                <div id="comments" class="pt-5 mt-5">
+                    <h3 class="mb-5">{{data.comments.all.count}} Comments</h3>
                     <ul class="comment-list">
+                        {%for comment in data.comments.all%}
                         <li class="comment">
                             <div class="vcard bio">
-                                <img src="images/person_1.jpg" alt="Image placeholder">
+                                <img src="{{comment.user.image.url}}" alt="Image placeholder">
                             </div>
                             <div class="comment-body">
                                 <h3>John Doe</h3>
-                                <div class="meta">October 03, 2018 at 2:21pm</div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum
-                                    necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente
-                                    iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+                                <div class="meta">{{comment.date}}</div>
+                                <p>{{comment.text}}</p>
                                 <p><a href="#" class="reply">Reply</a></p>
                             </div>
                         </li>
-
-                        <li class="comment">
-                            <div class="vcard bio">
-                                <img src="images/person_1.jpg" alt="Image placeholder">
-                            </div>
-                            <div class="comment-body">
-                                <h3>John Doe</h3>
-                                <div class="meta">October 03, 2018 at 2:21pm</div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum
-                                    necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente
-                                    iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                <p><a href="#" class="reply">Reply</a></p>
-                            </div>
-
-                            <ul class="children">
-                                <li class="comment">
-                                    <div class="vcard bio">
-                                        <img src="images/person_1.jpg" alt="Image placeholder">
-                                    </div>
-                                    <div class="comment-body">
-                                        <h3>John Doe</h3>
-                                        <div class="meta">October 03, 2018 at 2:21pm</div>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem
-                                            laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe
-                                            enim sapiente iste iure! Quam voluptas earum impedit necessitatibus,
-                                            nihil?</p>
-                                        <p><a href="#" class="reply">Reply</a></p>
-                                    </div>
-
-
-                                    <ul class="children">
-                                        <li class="comment">
-                                            <div class="vcard bio">
-                                                <img src="images/person_1.jpg" alt="Image placeholder">
-                                            </div>
-                                            <div class="comment-body">
-                                                <h3>John Doe</h3>
-                                                <div class="meta">October 03, 2018 at 2:21pm</div>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur
-                                                    quidem laborum necessitatibus, ipsam impedit vitae autem, eum
-                                                    officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum
-                                                    impedit necessitatibus, nihil?</p>
-                                                <p><a href="#" class="reply">Reply</a></p>
-                                            </div>
-
-                                            <ul class="children">
-                                                <li class="comment">
-                                                    <div class="vcard bio">
-                                                        <img src="images/person_1.jpg" alt="Image placeholder">
-                                                    </div>
-                                                    <div class="comment-body">
-                                                        <h3>John Doe</h3>
-                                                        <div class="meta">October 03, 2018 at 2:21pm</div>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                                            Pariatur quidem laborum necessitatibus, ipsam impedit vitae
-                                                            autem, eum officia, fugiat saepe enim sapiente iste iure!
-                                                            Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                                        <p><a href="#" class="reply">Reply</a></p>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="comment">
-                            <div class="vcard bio">
-                                <img src="images/person_1.jpg" alt="Image placeholder">
-                            </div>
-                            <div class="comment-body">
-                                <h3>John Doe</h3>
-                                <div class="meta">October 03, 2018 at 2:21pm</div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum
-                                    necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente
-                                    iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                <p><a href="#" class="reply">Reply</a></p>
-                            </div>
-                        </li>
+                        {%endfor%}
                     </ul>
                     <!-- END comment-list -->
 
                     <div class="comment-form-wrap pt-5">
                         <h3 class="mb-5">Leave a comment</h3>
-                        <form action="#" class="p-5 bg-light">
-                            <div class="form-group">
-                                <label for="name">Name *</label>
-                                <input type="text" class="form-control" id="name">
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email *</label>
-                                <input type="email" class="form-control" id="email">
-                            </div>
-                            <div class="form-group">
-                                <label for="website">Website</label>
-                                <input type="url" class="form-control" id="website">
-                            </div>
-
+                        <form method="post" action="{%url 'core:story_detail' data.id%}#comments" class="p-5 bg-light">
+                            {%csrf_token%}
                             <div class="form-group">
                                 <label for="message">Message</label>
-                                <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
+                                {{form.text}}
                             </div>
                             <div class="form-group">
                                 <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
@@ -181,7 +89,7 @@
                     <ul class="categories">
                         <h3 class="heading mb-4">Categories</h3>
                         {%for category in categories%}
-                        <li><a href="{% url 'core:stories' %}?cate={{category.title}}">{{category.title}} <span>(12)</span></a></li>
+                        <li><a href="{% url 'core:stories' %}?cate={{category.title}}">{{category.title}} <span>({{category.stories.all.count}})</span></a></li>
                         {%endfor%}
                     </ul>
                 </div>
@@ -192,7 +100,7 @@
                     <div class="block-21 mb-4 d-flex">
                         <a class="blog-img mr-4" style="background-image: url({{rc.image.url}});"></a>
                         <div class="text">
-                            <h3><a href="#">{{rc.title}}</a></h3>
+                            <h3><a href="{%url 'core:story_detail' rc.id%}">{{rc.title}}</a></h3>
                             <div class="meta">
                                 <div><a href="#"><span class="icon-calendar"></span>{{rc.date | date:'M d, Y'}}</a></div>
                                 <div><a href="#"><span class="icon-person"></span> Admin</a></div>

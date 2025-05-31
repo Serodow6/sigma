@@ -74,6 +74,14 @@ def user_profile(request):
     return render(request,'user-profile.html',context=context)
 
 def story_detail(request,id):
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save()
+            comment.story = Story.objects.get(id=id)
+            comment.user = request.user
+            comment.save()
+    form = CommentForm()
     story = Story.objects.get(id=id)
     categories = Category.objects.all
     tag = Tag.objects.all()
@@ -82,7 +90,8 @@ def story_detail(request,id):
         'data':story,
         'categories':categories,
         'recent_stories':recent_stories,
-        'tags':tag
+        'tags':tag,
+        'form':form
     }
     return render(request,'single.html',context=context) 
 
