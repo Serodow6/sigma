@@ -46,45 +46,6 @@
                 </div>
 
 
-                <div id="comments" class="pt-5 mt-5">
-                    <h3 class="mb-5">{{data.comments.all.count}} Comments</h3>
-                    <ul class="comment-list">
-                        {%for comment in data.comments.all%}
-                        <li class="comment">
-                            <div class="vcard bio">
-                                <img src="{{comment.user.image.url}}" alt="Image placeholder">
-                            </div>
-                            <div class="comment-body">
-                                <h3>John Doe</h3>
-                                <div class="meta">{{comment.date}}</div>
-                                <p>{{comment.text}}</p>
-                               
-                            </div>
-                        </li>
-                        {%endfor%}
-                    </ul>
-                    <!-- END comment-list -->
-
-                    <div class="comment-form-wrap pt-5">
-                        <h3 class="mb-5">Leave a comment</h3>
-                        <form method="post" action="{%url 'core:story_detail' data.id%}#comments" class="p-5 bg-light">
-                            {%csrf_token%}
-                            <div class="form-group">
-                                <label for="message">Message</label>
-                                {{form.text}}
-                            </div>
-                            <div class="form-group">
-                                {% if request.user.is_authenticated%}
-                                <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
-                                {%else%}
-                                <a class="btn py-3 px-4 btn-primary" href="{%url 'accounts:login'%}">Post Comment</a>
-                                {%endif%}
-                            </div>
-
-                        </form>
-                    </div>
-                </div>
-
             </div> <!-- .col-md-8 -->
             <div class="col-lg-4 sidebar pr-lg-5 ftco-animate">
                 <div class="sidebar-box">
@@ -106,9 +67,9 @@
                         <div class="text">
                             <h3><a href="{%url 'core:story_detail' rc.id%}">{{rc.title}}</a></h3>
                             <div class="meta">
-                                <div><a href=""><span class="icon-calendar"> </span>{{rc.date | date:'M d, Y'}}</a></div>
-                                <div><a href=""><span class=""></span>{{rc.user}}</a></div>
-                                <div><a href=""><span class="icon-chat"></span> {{rc.comments.count}}</a></div>
+                                <div><a href="#"><span class="icon-calendar"> </span>{{rc.date | date:'M d, Y'}}</a></div>
+                                <div><a href="#"><span class=""></span>Admin</a></div>
+                                <div><a href="#"><span class="icon-chat"></span> 19</a></div>
                             </div>
                         </div>
                     </div>

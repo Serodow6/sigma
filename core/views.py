@@ -107,4 +107,4 @@ def recipe_detail(request,id):
         'recent_stories':recent_stories,
         'tags':tag
     }
-    return render(request,'single.html',context=context)
+    return render(request,'single_recipe.html',context=context)
