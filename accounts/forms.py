@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm,AuthenticationForm,UserChangeForm
 from accounts.models import User
 
 class RegisterForm(UserCreationForm):
@@ -34,4 +34,17 @@ class LoginForm(AuthenticationForm):
         widgets = {
             'username':forms.TextInput(attrs={'class':'form-control','placeholder':'Username'}),
             'password':forms.PasswordInput(attrs={'class':'form-control','placeholder':'Password'}),
+        }
+
+class EditProfileForm(UserChangeForm):
+    class  Meta:
+        model = User
+        fields = ['username','first_name','last_name','email','image','bio']
+        widgets = {
+            'username':forms.TextInput(attrs={'class':'form-control','placeholder':'Username'}),
+            'first_name':forms.TextInput(attrs={'class':'form-control','placeholder':'First_name'}),
+            'last_name':forms.TextInput(attrs={'class':'form-control','placeholder':'last_name'}),
+            'email':forms.EmailInput(attrs={'class':'form-control','placeholder':'Email'}),
+            'image':forms.FileInput(attrs={'class':'form-control','placeholder':'Image'}),
+            'bio':forms.Textarea(attrs={'class':'form-control','placeholder':'Bio'}),
         }

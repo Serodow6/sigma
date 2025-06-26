@@ -58,7 +58,7 @@
                             <div class="text pt-3">
                                 <p class="meta d-flex"><span class="pr-3">{{story.category}}</span><span class="ml-auto pl-3">{{story.date|date:"M d , Y"}}</span>
                                 </p>
-                                <h3><a href="{%url 'core:story_detail' story.id %}">Tasty &amp; Delicious Foods</a></h3>
+                                <h3><a href="{%url 'core:story_detail' story.id %}">{{story.title}}</a></h3>
                                 <p class="mb-0"><a href="{%url 'core:story_detail' story.id %}" class="btn-custom">Read More <span
                                     class="icon-arrow_forward ml-4"></span></a></p>
                             </div>

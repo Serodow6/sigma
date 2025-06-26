@@ -2,7 +2,7 @@ from django.shortcuts import render
 from accounts.forms import *
 from django.contrib.auth.views import LoginView
 from accounts.models import User
-from django.views.generic import CreateView,UpdateView
+from django.views.generic import CreateView, UpdateView
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
 # Create your views here.
@@ -25,3 +25,10 @@ def user_profile(request,id):
     return render(request,'user-profile.html',context)
 
 
+class EditProfile(UpdateView):
+    model = User
+    template_name = 'register.html'
+    form_class = EditProfileForm
+    
+    def get_success_url(self):
+        return reverse_lazy('accounts:user_profile',kwargs={'id':self.request.user.id})

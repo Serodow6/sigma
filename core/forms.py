@@ -18,3 +18,28 @@ class CommentForm(forms.ModelForm):
         widgets = {
             'text':forms.Textarea(attrs={'class':'form-control','rows':'5','placeholder':'Message'})
         }
+class CreateStoryForm(forms.ModelForm):
+    category = forms.ModelChoiceField(queryset=Category.objects.all(),widget=forms.Select(attrs={'class':'form-control','placeholder':'Category'}))
+    tags = forms.ModelMultipleChoiceField(queryset=Tag.objects.all(),widget=forms.SelectMultiple(attrs={'class':'form-control','placeholder':'Tags'}))
+    class Meta:
+        model = Story
+        fields = '__all__'
+        widgets = {
+            'title':forms.TextInput(attrs={'class':'form-control','placeholder':'Title'}),
+            'description':forms.Textarea(attrs={'class':'form-control','rows':'5','placeholder':'Description'}),
+            'text':forms.Textarea(attrs={'class':'form-control','rows':'5','placeholder':'Text'}),
+            'image':forms.FileInput(attrs={'class':'form-control','placeholder':'Image'}),
+        }
+
+class CreateRecipeForm(forms.ModelForm):
+    category = forms.ModelChoiceField(queryset=Category.objects.all(),widget=forms.Select(attrs={'class':'form-control','placeholder':'Category'}))
+    tags = forms.ModelMultipleChoiceField(queryset=Tag.objects.all(),widget=forms.SelectMultiple(attrs={'class':'form-control','placeholder':'Tags'}))
+    class Meta:
+        model = Recipe
+        fields = '__all__'
+        widgets = {
+            'title':forms.TextInput(attrs={'class':'form-control','placeholder':'Title'}),
+            'description':forms.Textarea(attrs={'class':'form-control','rows':'5','placeholder':'Description'}),
+            'text':forms.Textarea(attrs={'class':'form-control','rows':'5','placeholder':'Text'}),
+            'image':forms.FileInput(attrs={'class':'form-control','placeholder':'Image'}),
+        }

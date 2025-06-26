@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from core.models import *
 from core.forms import *
+from django.urls import reverse_lazy
+
 # Create your views here.
 
 def home(request):
@@ -108,3 +110,33 @@ def recipe_detail(request,id):
         'tags':tag
     }
     return render(request,'single_recipe.html',context=context)
+
+
+def create_story(request):
+    if request.method == 'POST':
+        form = CreateStoryForm(request.POST,request.FILES)
+        if form.is_valid():
+            story = form.save()
+            story.user = request.user
+            story.save()
+            return redirect('accounts:user_profile',id=request.user.id)
+    form = CreateStoryForm()
+    context = {
+        'form':form
+    }
+    return render(request,'create_story.html',context=context)
+
+
+def create_recipe(request):
+    if request.method == 'POST':
+        form = CreateStoryForm(request.POST,request.FILES)
+        if form.is_valid():
+            recipe = form.save()
+            recipe.user = request.user
+            recipe.save()
+            return redirect('accounts:user_profile',id=request.user.id)
+    form = CreateRecipeForm()
+    context = {
+        'form':form
+    }
+    return render(request,'create_recipe.html',context=context)
