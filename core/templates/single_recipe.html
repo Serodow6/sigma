@@ -68,8 +68,8 @@
                             <h3><a href="{%url 'core:story_detail' rc.id%}">{{rc.title}}</a></h3>
                             <div class="meta">
                                 <div><a href="#"><span class="icon-calendar"> </span>{{rc.date | date:'M d, Y'}}</a></div>
-                                <div><a href="#"><span class=""></span>Admin</a></div>
-                                <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+                                <div><a href="#"><span class=""></span>{{rc.user}}</a></div>
+                                <div><a href="#"><span class="icon-chat"> {{rc.comments.count}}</span></a></div>
                             </div>
                         </div>
                     </div>

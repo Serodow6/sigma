@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from core.models import *
 from core.forms import *
+from django.views.generic import UpdateView
 from django.urls import reverse_lazy
 
 # Create your views here.
@@ -140,3 +141,36 @@ def create_recipe(request):
         'form':form
     }
     return render(request,'create_recipe.html',context=context)
+
+class EditStory(UpdateView):
+    model = Story
+    form_class = CreateStoryForm
+    template_name = 'create_story.html'
+    def get_success_url(self):
+        return reverse_lazy('accounts:user_profile',kwargs={'id':self.request.user.id})
+
+    def form_valid(self,form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+
+class EditRecipe(UpdateView):
+    model = Recipe
+    form_class = CreateRecipeForm
+    template_name = 'create_recipe.html'
+    def get_success_url(self):
+        return reverse_lazy('accounts:user_profile',kwargs={'id':self.request.user.id})
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+def delete_story(request,id):
+    story = Story.objects.get(id=id)
+    story.delete()
+    return redirect('accounts:user_profile',id=request.user.id)
+
+def delete_recipe(request,id):
+    recipe = Recipe.objects.get(id=id)
+    recipe.delete()
+    return redirect('accounts:user_profile',id=request.user.id)
